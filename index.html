@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="title" content = "Производство текстиля для сна - DonSon">
+	<title>DonSon</title>
+	<link rel="stylesheet" href="./css/styles.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<script>
+	$(document).ready(function() { 
+		$('#err_name').hide();
+		$('#err_email').hide();
+		$('#err_phone').hide();
+
+		$(window).scroll(function(){
+			var top=$(document).scrollTop();
+			if (top > 109) {
+				$('nav').css("top", "0").css("margin-top", "0").css("position", "fixed").css("z-index", "999");
+			} else {
+				$('nav').css("margin-top", "-21").css("position", "absolute");
+			}
+
+			if ((top>109) & (top<660)) {
+				$('#main').css("background-color", "#ffbf00").css("color", "rgb(42,41,42)");
+				$('#earn').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+				$('#about_comp').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+			} else if ((top>660) & (top<1350)) {
+				$('#earn').css("background-color", "#ffbf00").css("color", "rgb(42,41,42)");
+				$('#main').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+				$('#about_comp').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+			} else if (top>1350) {
+				$('#about_comp').css("background-color", "#ffbf00").css("color", "rgb(42,41,42)");
+				$('#main').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+				$('#earn').css("background-color", "rgb(42,41,42)").css("color", "rgb(255,255,255)");
+			}
+		});
+	
+		$('#contacts').submit(function(){
+			var name=$('#name').val();
+			var email=$('#email').val();
+			var phone=$('#phone_number').val();
+			var err=0;
+			var symbols='';
+
+			//alert(phone);
+		
+		var rv_name=new RegExp(/^[a-zA-Zа-яА-Я]+$/);
+		
+		if ((name=='') || (rv_name.test(name)==false)) {
+			$('#name').css("border",'1px solid red');
+			$('#err_name').show();
+			$('#err_name').html("Имя введено неверно");
+			err=1;
+		} else {
+			$('#name').css("border",'1px solid green');
+			
+		}
+
+		var rv_email=new RegExp(/.+@.+/);
+		if ((email=='') || (rv_email.test(email)==false)) {
+			$('#email').css("border",'1px solid red');
+			$('#err_email').show();
+			$('#err_email').html("Адрес введен неверно");
+			err=1;
+		} else {
+			$('#email').css("border",'1px solid green');
+		}
+
+		var rv_phone=new RegExp(/^[0-9]+$/);
+		if ((phone=='') || (phone.match(/[a-zA-Zа-яА-Я]/)!=null)) {
+			$('#phone_number').css("border",'1px solid red');
+			$('#err_phone').show();
+			$('#err_phone').html("Телефон введен неверно");
+			err=1;
+		} else if (rv_phone.test(phone)==true) {
+			$('#phone_number').css("border",'1px solid green');
+		} else {
+			symbols=phone.match(/\D/g);
+			if (symbols!=null) {
+				for (var i=0; i<symbols.length; i++) {
+					if((symbols[i]!="(")&(symbols[i]!=")")&(symbols[i]!="-")) {
+						i=symbols.length;
+						$('#phone_number').css("border",'1px solid red');
+						$('#err_phone').show();
+						$('#err_phone').html("Телефон введен неверно");
+						err=1;
+					} else {
+						$('#phone_number').css("border",'1px solid green');
+					}
+				}
+			}
+		}
+
+		if (err==1) {
+			return false;
+		} else {
+			return true;
+		}
+	});
+		
+
+	});
+</script>
+<body>
+	<div class="header">
+		<div class="logo">
+			<img class="img_logo" src="../images/logo.png" alt="logo">
+			<p class="text_logo">производство текстиля для сна</p>
+		</div>
+		<div class="phone">
+			<img class="img_phone" src="../images/phone2.png" alt="phone">
+			<p class="phone_number">8 (800) 555-35-35</p>
+			<p class="text_phone">Отдел по работе с дистрибьюторами</p>
+		</div>
+
+		<div class="yellow_rect">
+			<div class="line left"></div>
+			<p class="ring">ЗАКАЗАТЬ ЗВОНОК</p>
+			<div class="line right"></div>
+		</div>
+	</div>
+	<section class="block_1">
+		<nav>
+			<ul class="menu">
+				<li class="point"><a class="links smooth" id="main" href="#"><div class="line left navig"></div>ГЛАВНАЯ<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" id="earn" href="#video"><div class="line left navig"></div>ЗАРАБАТЫВАТЬ С DONSON<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" id="about_comp" href="#about"><div class="line left navig"></div>О КОМПАНИИ<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" href="#"><div class="line left navig"></div>ПРОДУКЦИЯ И ЦЕНЫ<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" href="#"><div class="line left navig"></div>НАЧАТЬ СОТРУДНИЧЕСТВО<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" href="#"><div class="line left navig"></div>АНАЛИТИКА<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" href="#"><div class="line left navig"></div>МАРКЕТИНГ<div class="line right navig"></div></a></li>
+				<li class="point"><a class="links smooth" href="#"><div class="line left navig"></div>КОНТАКТЫ<div class="line right navig"></div></a></li>
+			</ul>
+		</nav>
+		<div class="blue">
+			<p class="blue_text">СТАНЬТЕ ЭКСКЛЮЗИВНЫМ ДИСТРИБЬЮТОРОМ DONSON В СВОЕМ РЕГИОНЕ</p>
+		</div>
+		<div class="white">
+			<p class="text_500">И ЗАРАБАТЫВАЙТЕ ОТ 500 ТЫС. РУБ. В МЕСЯЦ</p>
+			<p class="next_lines">НА ОПТОВОЙ ПРОДАЖЕ ТЕКСТИЛЯ ДЛЯ СНА</p>
+			<p class="next_lines">ГАРАНТИЯ ВЫХОДА НА ПРИБЫЛЬ УЖЕ В ПЕРВЫЙ МЕСЯЦ</p>
+			<div class="horiz_line">
+				<p class="text_info">Это возможно, поскольку мы обеспечим Вас текстильной продукцией высокого качества и клиентами из Вашего региона, заинтересованных в оптовых закупках небольшими партиями.</p>
+				<p class="text_info">Мы поможем Вам собрать или улучшить уже имеющуюся команду, проведем обучение Вас и персонала, научим наращивать объем продаж. <br/>С Вами будет работать наш персональный менеджер, который поможет Вам в этом.</p>
+				<p class="text_info">*Обычно наши дистрибьюторы через 3 месяца становятся самыми крупными текстильными компаниями в своем регионе и расширяют бизнес на соседние.</p>
+			</div>
+
+			<a class="ring" href="#video">
+			<div class="yellow_rect details">
+				<div class="line left"></div>
+				<p class="ring">УЗНАТЬ ПОДРОБНЕЕ</p>
+				<div class="line right"></div>
+			</div>
+			<img class="arrow" src="../images/arrow2.png" alt="arrow"></a>
+		</div>
+	</section>
+	<section class="block_2">
+		<div class="h_block_2"><a name="video"></a>
+			<p class="text_video">ПОСМОТРИТЕ КОРОТКОЕ ВИДЕО</p>
+			<p class="text_video next-line">ЧТОБЫ УЗНАТЬ ПОДРОБНЕЕ О НАШЕМ ПРЕДЛОЖЕНИИ ДЛЯ ДИСТРИБЬЮТЕРОВ</p>
+		</div>
+		<div class="video_frame">
+			<p class="desc_video">ОБРАЩЕНИЕ генерального директора ООО "ДОНСОН" Андрея Волосского</p>
+			<iframe width="725" height="400" src="https://www.youtube.com/embed/crVBjU8wFio" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
+		<div class="contact_form">
+			<p class="descr_form">Оставьте Ваши контактные данные <br/> для обсуждения деталей сотрудничества</p>
+			<form action="" id="contacts" method="POST">
+				<input type="text" placeholder="Имя" class="text-inp" id="name" required></input>
+				<div id="err_name"></div>
+				<input type="text" placeholder="EMAIL" class="text-inp" id="email"></input>
+				<div id="err_email"></div>
+				<select class="text-inp" id="city" required>
+					<option>Москва</option>
+					<option>Санкт-Петербург</option>
+					<option>Абакан</option>
+					<option>Бузулук</option>
+					<option>Воронеж</option>
+					<option>Геленджик</option>
+					<option>Дубна</option>
+					<option>Екатеринбург</option>
+					<option>Жуковск</option>
+					<option>Зеленодольск</option>
+					<option>Иркутск</option>
+					<option>Казань</option>
+					<option>Липецк</option>
+					<option>Новосибирск</option>
+					<option>Орел</option>
+					<option>Пенза</option>
+					<option>Ростов</option>
+					<option>Тамбов</option>
+					<option>Ульяновск</option>
+				</select>
+				<input type="text" placeholder="Телефон" class="text-inp" id="phone_number" required></input>
+				<div id="err_phone"></div>
+				<p class="experience">Опыт продажи текстиля</p>
+				<button class="yellow_rect" id="submit">
+					<div class="line left"></div>
+						<p class="ring">ОТПРАВИТЬ</p>
+					<div class="line right"></div>
+				</button>
+			</form>
+		</div>
+	</section>
+	<section class="block_3"><a name="about"></a>
+		<div class="h_block_2 h_block_3">
+			<p class="text_video text_about">О НАС</p>
+			<p class="text_video next-line">ООО "ДОНСОН" СПЕЦИАЛИЗИРУЕТСЯ НА ПРОИЗВОДСТВЕИ ОПТОВОЙ ПРОДАЖЕ ТЕКСТИЛЯ <br/> ДЛЯ СНА ПО ВСЕЙ РОССИИ</p>
+		</div>
+	</section>
+</body>
+</html>
+
